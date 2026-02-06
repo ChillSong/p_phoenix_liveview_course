@@ -13,6 +13,9 @@
   <:item title="Description">{@game.description}</:item>
   <:item title="Unit price">{@game.unit_price}</:item>
   <:item title="Sku">{@game.sku}</:item>
+  <:item title="Image">
+    <img src={@game.image_upload} alt="Game Image" />
+  </:item>
 </.list>
 
 <.back navigate={~p"/games"}>Back to games</.back>
