@@ -7,7 +7,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :games, Catalog.list_games())}
+    {:ok, assign(socket, :games, Catalog.list_games())}
   end
 
   @impl true
@@ -47,7 +47,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     game = Catalog.get_game!(id)
     {:ok, _} = Catalog.delete_game(game)
-
-    {:noreply, stream_delete(socket, :games, game)}
+    games = socket.assigns.games |> Enum.reject(&(&1.id == id))
+    {:noreply, assign(socket, :games, games)}
   end
 end

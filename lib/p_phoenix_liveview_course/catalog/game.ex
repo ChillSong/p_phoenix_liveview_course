@@ -9,7 +9,7 @@ defmodule PPhoenixLiveviewCourse.Catalog.Game do
     field :unit_price, :float
     field :sku, :integer
     field(:image_upload, :string)
-    has_one :tomatoes, Tomatoes
+    has_one :tomatoes, Tomatoes, on_delete: :delete_all
 
     timestamps(type: :utc_datetime)
   end

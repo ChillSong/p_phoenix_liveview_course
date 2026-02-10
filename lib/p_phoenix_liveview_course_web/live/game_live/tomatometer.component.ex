@@ -21,7 +21,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.Tomatometer do
       nil ->
         {:noreply, assign_new_tomatoes(socket, type, new_count)}
 
-      error ->
+      _error ->
         send(self(), {:flash, :error, "Cannot get tomatoes info"})
 
         {:noreply, socket}
@@ -78,7 +78,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.Tomatometer do
         IO.inspect(tomatoes)
         socket |> assign(:tomatoes, tomatoes)
 
-      error ->
+      _error ->
         send(self(), {:flash, :error, "Cannot create tomatoes info"})
         socket
     end
