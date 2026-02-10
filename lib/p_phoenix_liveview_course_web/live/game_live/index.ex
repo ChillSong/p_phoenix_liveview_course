@@ -3,6 +3,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.Index do
 
   alias PPhoenixLiveviewCourse.Catalog
   alias PPhoenixLiveviewCourse.Catalog.Game
+  alias PPhoenixLiveviewCourseWeb.GameLive.Tomatometer
 
   @impl true
   def mount(_params, _session, socket) do

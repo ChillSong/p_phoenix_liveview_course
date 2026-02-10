@@ -13,14 +13,16 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.Tomatometer do
   def handle_event("on_tomatoe", %{"count" => count, "type" => type}, socket) do
     new_count = String.to_integer(count) + 1
     type = String.to_atom(type)
-    current_tomatoes = socket.assigns.tomatoes
 
-    case Rating.update_tomatoes(current_tomatoes, Map.put(%{}, type, new_count)) do
-      {:ok, updated_tomatoes} ->
-        {:noreply, socket |> assign(:tomatoes, updated_tomatoes)}
+    case Rating.get_tomatoes_by_game(socket.assigns.game.id) do
+      %Tomatoes{} = tomatoes ->
+        {:noreply, update_tomatoes(socket, tomatoes, type, new_count)}
+
+      nil ->
+        {:noreply, assign_new_tomatoes(socket, type, new_count)}
 
       _error ->
-        {:noreply, socket |> put_flash(:error, "Cannot update tomatoes info")}
+        {:noreply, socket |> put_flash(:error, "Cannot get tomatoes info")}
     end
   end
 
@@ -51,8 +53,43 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.Tomatometer do
       %Tomatoes{} = tomatoes ->
         socket |> assign(:tomatoes, tomatoes)
 
-      _ ->
-        socket |> put_flash(:error, "Cannot get tomatoes info")
+      _error ->
+        socket
+        |> assign(:tomatoes, %{bad: 0, good: 0})
+        |> put_flash(:error, "Cannot get tomatoes info")
+    end
+  end
+
+  defp assign_new_tomatoes(socket, type, count) do
+    attrs = %{game_id: socket.assigns.game.id} |> Map.put(type, count)
+    # since bad and good fields are required for change set
+    attrs =
+      if type == :good do
+        Map.put(attrs, :bad, 0)
+      else
+        Map.put(attrs, :good, 0)
+      end
+
+    case Rating.create_tomatoes(attrs) do
+      {:ok, tomatoes} ->
+        IO.inspect(tomatoes)
+        socket |> assign(:tomatoes, tomatoes)
+
+      error ->
+        IO.inspect(error)
+
+        socket
+        |> put_flash(:error, "Cannot get tomatoes info")
+    end
+  end
+
+  defp update_tomatoes(socket, tomatoes, type, count) do
+    case Rating.update_tomatoes(tomatoes, Map.put(%{}, type, count)) do
+      {:ok, updated_tomatoes} ->
+        socket |> assign(:tomatoes, updated_tomatoes)
+
+      _error ->
+        socket |> put_flash(:error, "Cannot update tomatoes info")
     end
   end
 end
