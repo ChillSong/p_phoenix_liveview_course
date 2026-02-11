@@ -27,6 +27,8 @@ defmodule PPhoenixLiveviewCourseWeb.Router do
 
     live "/games/:id", GameLive.Show, :show
     live "/games/:id/show/edit", GameLive.Show, :edit
+
+    live "/pokemon", PokemonLive, :index
   end
 
   # Other scopes may use custom stacks.
