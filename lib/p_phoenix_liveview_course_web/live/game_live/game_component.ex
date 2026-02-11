@@ -23,7 +23,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.GameComponent do
       phx-target={@target}
       phx-value-type={Atom.to_string(@type)}
       phx-value-count={@count}
-      class="p-2 border"
+      class="tomatoe-button"
     >
       <span>{@count}</span>
       <span>{if @type == :good, do: "🍏", else: "🍎"}</span>
@@ -43,9 +43,16 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.GameComponent do
       |> assign(:bad_percentage, calculate_percentage(total, assigns.bad))
 
     ~H"""
-    <div class="flex justify-center items-center gap-2">
-      <span class="text-green-700 text-lg">{@good_percentage}%</span>
-      <span class="text-red-600 text-lg">{@bad_percentage}%</span>
+    <div class="tomato-scoreboard">
+      <div>
+        <span>{@good_percentage}%</span>
+        <span>GOOD!</span>
+      </div>
+      <div class="divider" />
+      <div>
+        <span>{@bad_percentage}%</span>
+        <span>BAD!</span>
+      </div>
     </div>
     """
   end

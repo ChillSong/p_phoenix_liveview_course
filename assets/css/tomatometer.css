@@ -1,0 +1,68 @@
+.tomatoe-button {
+    /* LAYOUT */
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 8px;
+    width: 56px;
+    height: 48px;
+    box-sizing: border-box;
+    /* VISUAL */
+    background: rgba(255, 99, 71, 0.15);
+    border: 1px solid rgba(255, 99, 71, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(255, 99, 71, 0.15);
+    /* TEXT */
+    color: #ff4433;
+    font-size: 14px;
+    font-weight: 600;
+    font-weight: bold;
+    /* BEHAVIOR */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tomatoe-button:hover {
+    background: rgba(255, 99, 71, 0.25);
+    border-color: rgba(255, 99, 71, 1);
+}
+
+.tomato-scoreboard {
+    /* LAYOUT */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 8px;
+    /* VISUAL */
+    background: rgba(255, 99, 71, 0.08);
+    border: 1px solid rgba(255, 99, 71, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px 0 rgba(255, 99, 71, 0.1);
+}
+
+.tomato-scoreboard > div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 2px;
+    line-height: 12px;
+    font-weight: 600;
+}
+
+.tomato-scoreboard > div > span:first-child {
+    font-size: 14px;
+    color: #ff4433;
+}
+
+.tomato-scoreboard > div > span:last-child {
+    font-size: 8px;
+}
+
+.tomato-scoreboard .divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(255, 99, 71, 1);
+}
