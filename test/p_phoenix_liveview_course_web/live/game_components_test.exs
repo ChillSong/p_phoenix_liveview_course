@@ -39,4 +39,15 @@ defmodule PPhoenixLiveviewCourseWeb.GameComponentsTest do
       refute html =~ "🍏"
     end
   end
+
+  describe "GameComponent.tomatoes_score" do
+    tomatoe_score_component = render_component(&GameComponent.tomatoes_score/1, bad: 5, good: 5)
+
+    {:ok, document} = Floki.parse_document(tomatoe_score_component)
+    good = document |> Floki.find("[data-testid='good-score']") |> Floki.text()
+    bad = document |> Floki.find("[data-testid='bad-score']") |> Floki.text()
+
+    assert good == "50.0%"
+    assert bad == "50.0%"
+  end
 end

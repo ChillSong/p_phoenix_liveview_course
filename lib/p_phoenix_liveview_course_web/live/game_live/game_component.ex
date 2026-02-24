@@ -45,12 +45,12 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.GameComponent do
     ~H"""
     <div class="tomato-scoreboard">
       <div>
-        <span>{@good_percentage}%</span>
+        <span data-testid="good-score">{@good_percentage}%</span>
         <span>GOOD!</span>
       </div>
       <div class="divider" />
       <div>
-        <span>{@bad_percentage}%</span>
+        <span data-testid="bad-score">{@bad_percentage}%</span>
         <span>BAD!</span>
       </div>
     </div>
