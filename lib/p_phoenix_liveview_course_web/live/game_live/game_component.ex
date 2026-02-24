@@ -24,6 +24,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameLive.GameComponent do
       phx-value-type={Atom.to_string(@type)}
       phx-value-count={@count}
       class="tomatoe-button"
+      data-testid="tomatoe-button"
     >
       <span>{@count}</span>
       <span>{if @type == :good, do: "🍏", else: "🍎"}</span>

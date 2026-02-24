@@ -18,7 +18,7 @@ defmodule PPhoenixLiveviewCourseWeb.GameComponentsTest do
       html = rendered_to_string(template)
 
       assert html ==
-               "<button phx-click=\"on_tomatoe\" phx-value-type=\"bad\" phx-value-count=\"0\" class=\"tomatoe-button\">\n  <span>0</span>\n  <span>🍎</span>\n</button>"
+               "<button phx-click=\"on_tomatoe\" phx-value-type=\"bad\" phx-value-count=\"0\" class=\"tomatoe-button\" data-testid=\"tomatoe-button\">\n  <span>0</span>\n  <span>🍎</span>\n</button>"
     end
 
     test "should render the tomate based on the type" do
